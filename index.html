@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سؤال عن الأحوال</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e2e;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+        }
+
+        .container {
+            background-color: #27293d;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .message,
+        .prayer-container,
+        .result-container {
+            display: none;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            border: 1px solid #444;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #1e1e2e;
+            color: #fff;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .result-container {
+            margin-top: 20px;
+            text-align: center;
+            animation: fadeIn 2s forwards;
+        }
+
+        img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+
+        h1,
+        p {
+            font-family: 'Arial', sans-serif;
+            color: #fff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container" id="passwordContainer">
+        <h1>أدخل كلمة المرور</h1>
+        <div class="input-group">
+            <input type="password" id="password" placeholder="أدخل كلمة المرور">
+        </div>
+        <button onclick="checkPassword()">تحقق</button>
+        <p id="passwordHint" class="hidden">كلمة المرور هي: Leka</p>
+    </div>
+    <div class="container message" id="messageContainer">
+        <h1>اذيك يا بنت خالتي</h1>
+        <p>شوفتي انا بسال عليكي ازااي</p>
+        <button onclick="showPrayer()">صلي على النبي 5 مرات</button>
+    </div>
+    <div class="container prayer-container" id="prayerContainer">
+        <h1>صلي على النبي</h1>
+        <p>عدد مرات الصلاة: <span id="prayerCount">0</span></p>
+        <button onclick="pray()">صلي على النبي</button>
+    </div>
+    <div class="container result-container" id="resultContainer">
+        <h1>احسن حافظة قرأان</h1>
+        <img src="https://drive.google.com/uc?export=view&id=12S7M7nTA4qDMlUlyd_iO6hhK3rmC8AtC" alt="صورة الفتاة">
+    </div>
+    <script>
+        let prayerCount = 0;
+
+        function checkPassword() {
+            const passwordInput = document.getElementById('password').value;
+            const passwordHint = document.getElementById('passwordHint');
+            if (passwordInput === 'Leka') {
+                document.getElementById('passwordContainer').style.display = 'none';
+                document.getElementById('messageContainer').style.display = 'block';
+            } else {
+                passwordHint.classList.remove('hidden');
+            }
+        }
+
+        function showPrayer() {
+            document.getElementById('messageContainer').style.display = 'none';
+            document.getElementById('prayerContainer').style.display = 'block';
+        }
+
+        function pray() {
+            prayerCount++;
+            document.getElementById('prayerCount').innerText = prayerCount;
+            if (prayerCount >= 5) {
+                document.getElementById('prayerContainer').style.display = 'none';
+                document.getElementById('resultContainer').style.display = 'block';
+            }
+        }
+    </script>
+</body>
+
+</html>
